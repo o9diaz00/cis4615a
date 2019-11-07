@@ -1,5 +1,9 @@
 /* Rule 03. Numeric Types and Operations (NUM)
  * NUM03-J. Use integer types that can fully represent the possible range of unsigned data
+ * Non-Compliant Code:
+ * public static int getInteger(DataInputStream is) throws IOException {
+ * 	return is.readInt();
+ * }
 */
 
 import java.io.DataInputStream;
@@ -17,5 +21,5 @@ public class Main
 	}
 
 	public static long getInteger(DataInputStream is) throws IOException
-	{ return (is.readInt()); }
+	{ return (is.readInt() & 0xFFFFFFFFL); } // Mask w/ 32 one-bits
 }
